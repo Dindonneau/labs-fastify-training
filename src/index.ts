@@ -1,4 +1,5 @@
 import fastify from "fastify"
+import { User, type UserType } from "./schemas/user.ts"
 
 interface IQuerystring {
   username: string
@@ -21,6 +22,7 @@ server.get("/ping", async (request, reply) => {
   return "pong\n"
 })
 
+// Fastify example
 server.get<{ Querystring: IQuerystring; Headers: IHeaders; Reply: IReply }>(
   "/auth",
   {
@@ -46,6 +48,23 @@ server.get<{ Querystring: IQuerystring; Headers: IHeaders; Reply: IReply }>(
     }
 
     return res.code(200).send({ success: true, message: "logged in!" })
+  }
+)
+
+// Typebox example
+server.post<{ Body: UserType; Reply: UserType }>(
+  "/",
+  {
+    schema: {
+      body: User,
+      response: {
+        200: User
+      }
+    }
+  },
+  async (req, res) => {
+    const { name, email } = req.body
+    return res.code(200).send({ name, email: email ?? "" })
   }
 )
 
