@@ -1,5 +1,6 @@
 import fastify from "fastify"
 import { User, type UserType } from "./schemas/user.ts"
+import myPlugin from "./plugins/index.ts"
 
 interface IQuerystring {
   username: string
@@ -17,6 +18,13 @@ interface IReply {
 }
 
 const server = fastify()
+
+server.register(myPlugin, { myPluginOption: 911 })
+
+server.get("/plugin", async (req, res) => ({
+  fromRequest: req.myPluginProp,
+  fromReply: res.myPluginProp
+}))
 
 server.get("/ping", async (request, reply) => {
   return "pong\n"
