@@ -1,7 +1,7 @@
 /**
  * 3. Teaching TypeScript about a decorator — two ways
  *
- * Run it:  node src/decorators/3-typing-them.ts
+ * Run it:  node examples/decorators/3-typing-them.ts
  *
  * `decorate` happens at runtime; TypeScript knows nothing about it. You either
  * declare it globally (module augmentation) or ask for it locally

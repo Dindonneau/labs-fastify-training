@@ -1,7 +1,7 @@
 /**
  * 1. What a decorator actually is
  *
- * Run it:  node src/decorators/1-what-is-a-decorator.ts
+ * Run it:  node examples/decorators/1-what-is-a-decorator.ts
  *
  * A decorator is nothing clever: it attaches a property to an object Fastify
  * already hands you — the server instance, the request, or the reply — so that

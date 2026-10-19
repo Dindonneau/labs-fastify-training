@@ -3,9 +3,9 @@
 Three runnable files. Read them in order, run each one, look at what it prints.
 
 ```bash
-node src/decorators/1-what-is-a-decorator.ts
-node src/decorators/2-why-not-a-plain-variable.ts
-node src/decorators/3-typing-them.ts
+node examples/decorators/1-what-is-a-decorator.ts
+node examples/decorators/2-why-not-a-plain-variable.ts
+node examples/decorators/3-typing-them.ts
 ```
 
 ## 1. What a decorator is

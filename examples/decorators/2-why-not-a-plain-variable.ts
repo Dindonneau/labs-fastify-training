@@ -1,7 +1,7 @@
 /**
  * 2. Why decorate, rather than just exporting a variable
  *
- * Run it:  node src/decorators/2-why-not-a-plain-variable.ts
+ * Run it:  node examples/decorators/2-why-not-a-plain-variable.ts
  *
  * A module-level variable is global: one value for the whole process. A
  * decorator belongs to a branch of the plugin tree, so the same name can hold

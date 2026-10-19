@@ -2,8 +2,8 @@
   "name": "lemfast",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/server.js",
+  "types": "dist/server.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
