@@ -19,7 +19,7 @@
 
     // Other Outputs
     "sourceMap": true,
-    // "declaration": true,
+    "declaration": true,
     // "declarationMap": true,
 
     // Stricter Typechecking Options
@@ -29,7 +29,7 @@
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
+    "noUnusedLocals": true,
     // "noUnusedParameters": true,
     // "noFallthroughCasesInSwitch": true,
     // "noPropertyAccessFromIndexSignature": true,
@@ -41,6 +41,8 @@
     "isolatedModules": true,
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
-    "skipLibCheck": true
-  }
+    "skipLibCheck": true,
+    "rewriteRelativeImportExtensions": true
+  },
+  "include": ["src"]
 }
