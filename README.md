@@ -135,15 +135,17 @@ declare module "fastify" {
 }
 ```
 
-Comfortable — `request.moduleAugmentedProp` just works, everywhere, with autocompletion. But the claim is global: _every_ Fastify instance in the project is now said to carry it, including instances that never registered the plugin.
+Comfortable: a handler writes `request.moduleAugmentedProp` and it just works, everywhere, with autocompletion. But the claim is global — _every_ Fastify instance in the project is now said to carry it, including instances that never registered the plugin.
 
-**`plugins/scopedDecorator.ts`** declares nothing. Its readers ask for the decoration instead, with a type local to their file:
+**`plugins/scopedDecorator.ts`** declares nothing at all. A handler that needs the value would ask for it, with a type local to its own file:
 
 ```ts
 const scoped = request.getDecorator<ScopedProp>(SCOPED_PROP_KEY)
 ```
 
 Nothing reaches the global interfaces, and Fastify checks at runtime that the decoration is really there — a missing one raises a named error rather than handing back `undefined`.
+
+Neither value is read anywhere here: `routes/checkDecorators.ts` only asks whether the decoration *exists*, with `hasRequestDecorator`, since what this project demonstrates is their reach rather than their contents.
 
 ### The demonstration
 
@@ -182,7 +184,13 @@ Both pages assume **CommonJS**. They never say so, but three of their instructio
 
 **The plugin's option typed as `number`**, where the guide declares it `string`. The guide's own snippet does not compile: it types the reply decoration as `number` and then feeds it that `string` option. Here the key is a shared constant (`MODULE_PROP_KEY`) used by both the augmentation and the `decorate` calls, so renaming it cannot desynchronise them — and the option keeps a name of its own, `onReplyValue`, rather than reusing the decoration's.
 
-**Status codes on `/animals`.** The guide throws when a query returns nothing — `throw new Error('No documents found')` on an empty collection, `throw new Error('Invalid value')` on a missing document — which Fastify turns into 500s. An empty collection is not a server error, and a missing animal is a 404. Both are corrected here:
+**Status codes.** The guides throw whenever something is missing, which Fastify turns into 500s. Two places are corrected here. On `/auth`, the guide's `preValidation` throws `Must be admin`; refusing a caller is a 401, like the password check right below it:
+
+```
+GET /auth?username=bob&…   → 401 {"error":"Unauthorized"}
+```
+
+**On `/animals`,** the guide throws when a query returns nothing — `throw new Error('No documents found')` on an empty collection, `throw new Error('Invalid value')` on a missing document — which Fastify turns into 500s. An empty collection is not a server error, and a missing animal is a 404. Both are corrected here:
 
 ```
 GET  /animals          (nothing stored yet)  → 200 []

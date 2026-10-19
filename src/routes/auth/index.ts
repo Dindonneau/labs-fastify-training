@@ -22,9 +22,13 @@ const auth: FastifyPluginAsync = async (fastify) => {
   fastify.get<{ Querystring: IQuerystring; Headers: IHeaders; Reply: IReply }>(
     "/",
     {
-      preValidation: async (request) => {
+      // The guide throws here, which Fastify turns into a 500. Refusing a
+      // caller is a 401, like the password check below.
+      preValidation: async (request, reply) => {
         const { username } = request.query
-        if (username !== "admin") throw new Error("Must be admin")
+        if (username !== "admin") {
+          return reply.code(401).send({ error: "Unauthorized" })
+        }
       },
     },
     async (request, reply) => {
