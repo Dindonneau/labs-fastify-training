@@ -43,5 +43,6 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
     "rewriteRelativeImportExtensions": true
-  }
+  },
+  "include": ["src"]
 }
