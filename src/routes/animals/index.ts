@@ -1,4 +1,6 @@
 import type { FastifyPluginAsync } from "fastify"
+import checkDecorators from "../checkDecorators.ts"
+import scopedDecorator from "../../plugins/scopedDecorator.ts"
 import {
   Animal,
   AnimalParams,
@@ -7,6 +9,11 @@ import {
 } from "../../schemas/animal.ts"
 
 const animals: FastifyPluginAsync = async fastify => {
+  // Confined to this branch: registered here rather than in app.ts, so fp()
+  // lifts it no further than this context. /ping and the others never see it.
+  await fastify.register(scopedDecorator)
+  await fastify.register(checkDecorators)
+
   // Runs once at load time. It only works because app.ts registers
   // plugins/mongo.ts before this file.
   const collection = fastify.mongo.db?.collection("animals")

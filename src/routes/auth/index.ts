@@ -1,4 +1,5 @@
 import type { FastifyPluginAsync } from "fastify"
+import checkDecorators from "../checkDecorators.ts"
 
 interface IQuerystring {
   username: string
@@ -16,6 +17,8 @@ interface IReply {
 }
 
 const auth: FastifyPluginAsync = async (fastify) => {
+  await fastify.register(checkDecorators)
+
   fastify.get<{ Querystring: IQuerystring; Headers: IHeaders; Reply: IReply }>(
     "/",
     {

@@ -8,8 +8,8 @@ import users from "./routes/users/index.ts"
 
 // Support plugins first, routes second: routes/animals reads fastify.mongo
 // while it loads, never the other way round.
-const app: FastifyPluginAsync = async (fastify) => {
-  // Registered at the root, so every branch below inherits it.
+const app: FastifyPluginAsync = async fastify => {
+  // Registered at the root, so every branch below inherits them.
   await fastify.register(globalDecorator, { onReplyValue: 911 })
   await fastify.register(mongoPlugin)
 
