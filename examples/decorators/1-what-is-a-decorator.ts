@@ -13,7 +13,7 @@ import Fastify from "fastify"
 const app = Fastify()
 
 // --- on the instance: available to every route below it
-app.decorate("appName", "lemfast")
+app.decorate("appName", "fastify-training")
 app.decorate("greet", (who: string) => `hello ${who}`)
 
 // --- on the request: one value per incoming call

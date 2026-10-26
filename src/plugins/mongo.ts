@@ -5,7 +5,7 @@ import type { FastifyPluginAsync } from "fastify"
 // The guide's our-db-connector.js, in TypeScript.
 const dbConnector: FastifyPluginAsync = async fastify => {
   await fastify.register(fastifyMongo, {
-    url: "mongodb://localhost:27017/lemfast"
+    url: "mongodb://localhost:27017/fastify-training"
   })
 }
 
