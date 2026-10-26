@@ -13,12 +13,12 @@ node examples/decorators/3-typing-them.ts
 Nothing clever: attaching a property to an object Fastify already hands you.
 
 ```ts
-app.decorate("appName", "lemfast")        // on the server instance
+app.decorate("appName", "fastify-training")        // on the server instance
 app.decorateRequest("requestId", "")      // on every incoming request
 app.decorateReply("servedBy", "")         // on every outgoing reply
 ```
 
-`decorate` is close to writing `app.appName = "lemfast"`. The instance one is read wherever that instance reaches. The request and reply ones are declared once with a default, then filled per call — usually in a hook, because each request needs its own value:
+`decorate` is close to writing `app.appName = "fastify-training"`. The instance one is read wherever that instance reaches. The request and reply ones are declared once with a default, then filled per call — usually in a hook, because each request needs its own value:
 
 ```ts
 app.addHook("onRequest", async (request, reply) => {
@@ -29,7 +29,7 @@ app.addHook("onRequest", async (request, reply) => {
 File 1 prints:
 
 ```
-/            -> {"fromInstance":"hello lemfast","fromRequest":"pb14uf","fromReply":"lemfast"}
+/            -> {"fromInstance":"hello fastify-training","fromRequest":"pb14uf","fromReply":"fastify-training"}
 /introspect  -> {"hasAppName":true,"hasGreet":true,"hasUnknown":false}
 ```
 

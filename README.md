@@ -1,4 +1,4 @@
-# lemfast
+# fastify-training
 
 A training project: a Fastify 5 server in TypeScript, built by working through the official guides one example at a time, then rearranged into the layout a real Fastify application uses.
 
@@ -19,7 +19,7 @@ No dependency is installed unless one of those pages calls for it.
 - TypeBox 1.3 — schemas written in TypeScript, types derived from them
 - TypeScript 7
 - Node 24 — `.nvmrc` pins `lts/krypton`
-- MongoDB, reachable on `localhost:27017` — database `lemfast`, collection `animals`
+- MongoDB, reachable on `localhost:27017` — database `fastify-training`, collection `animals`
 
 ## Running it
 
