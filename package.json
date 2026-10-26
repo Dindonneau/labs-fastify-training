@@ -1,5 +1,5 @@
 {
-  "name": "fastify-training",
+  "name": "labs-fastify-training",
   "version": "1.0.0",
   "description": "",
   "main": "dist/server.js",
